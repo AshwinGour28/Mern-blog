@@ -1,31 +1,25 @@
-# .gitignore - list of file path patterns not to be tracked by source control
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# NodeJS dependencies can be downloaded
-/node_modules
+node_modules
+dist
+dist-ssr
+*.local
 
-# Local variables are specific to local system only
-.env
-.env.backup
-
-# local debug files
-npm-debug.log
-yarn-error.log
-
-# IDE specific local configurations
-/.fleet
-/.idea
-
-# adds .vscode folder to ignored files
-.vscode/**/*
-
-# exclude these files from being ignored
-!.vscode/settings.json
+# Editor directories and files
+.vscode/*
 !.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/tasks.json
-
-# macOS folder configuration attributes
-*DS_Store
-
-# generated files
-/public/build
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
