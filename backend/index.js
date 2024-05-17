@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
@@ -17,10 +18,13 @@ mongoose.connect(process.env.MONGO)
 app.listen(3000, ()=>{
     console.log('Server is running on port 3000')
 })
-
+app.use(cors({
+    origin:"http://localhost:5173",
+    methods:["GET", "POST"],
+}));
 app.use(express.json())
-app.use('/user', userRoutes);
-app.use('/auth', authRoutes);
+app.use('/backend/user', userRoutes);
+app.use('/backend/auth', authRoutes);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
