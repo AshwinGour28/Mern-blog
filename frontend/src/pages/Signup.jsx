@@ -66,8 +66,8 @@ export default function Signup() {
                 <Label value='Your password' />
               <TextInput type='password' placeholder='Password' id='password' onChange={handleChange}/>
               </div>
-              <div className='-ml-28'>
-              <Button type='submit' className='mx-28 px-16 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white' disabled={loading}>
+              <div className='justify-center'>
+              <Button type='submit' className='w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white' disabled={loading}>
                 {
                   loading ? (
                     <>
@@ -82,7 +82,7 @@ export default function Signup() {
               </div>
               <div className='flex gap-2 text-sm mt-5'>
               <span>Have an account?
-              <Link to='sign-in' className='text-blue-500'>
+              <Link to='/sign-in' className='text-blue-500'>
                 Sign in
               </Link>
               </span>
