@@ -28,11 +28,11 @@ export default function Header() {
         <TextInput
           type='text'
           placeholder='Search...'
-          className='px-10 py-2 '
+          className='px-10 py-2 w-max '
         />
       </form>
       
-      <div className='flex gap-28 md:order-2 px-32'>
+      <div className='flex gap-28 md:order-2 px-20'>
       
       <Link
         to='/'
@@ -51,8 +51,8 @@ export default function Header() {
       >Project
         </Link>
 
-        <Link to='/sign-up' className='pl-52'>
-          <Button className='px-3 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white '>Sign Up</Button>
+        <Link to='/sign-up' className='py-2'>
+          <Button className='w-max px-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>Sign Up</Button>
         </Link>
       </div>
 
