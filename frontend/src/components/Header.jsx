@@ -1,18 +1,12 @@
-import { Button, Navbar, TextInput } from 'flowbite-react';
+import { Avatar, Button, Dropdown, DropdownItem, Navbar, TextInput } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon } from 'react-icons/fa';
+import {useSelector} from 'react-redux';
 
 export default function Header() {
     const path = useLocation().pathname;
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const urlParams = new URLSearchParams(location.search);
-      urlParams.set('searchTerm', searchTerm);
-      const searchQuery = urlParams.toString();
-      navigate(`/search?${searchQuery}`);
-    };
+    const {currentUser} = useSelector(state =>state.user )
   return (
     <Navbar className='border-b-2'>
       <Link
@@ -24,40 +18,86 @@ export default function Header() {
         </span>
         Blog
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form>
         <TextInput
           type='text'
           placeholder='Search...'
-          className='px-10 py-2 w-max '
+          rightIcon={AiOutlineSearch}
+          className='hidden lg:inline'
         />
       </form>
-      
-      <div className='flex gap-28 md:order-2 px-20'>
-      
+      <Button className='w-12 h-10 lg:hidden border-gray-300' color='gray' pill>
+        <AiOutlineSearch/>
+      </Button>
+      <div className='hidden md:flex gap-28 md:order-2'>
       <Link
         to='/'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        className='self-center whitespace-nowrap text-sm dark:text-white'
       >Home
         </Link>
         
         <Link
         to='/about'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        className='self-center whitespace-nowrap text-sm dark:text-white'
       >About
         </Link>
         <Link
-        to='/project'
-        className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'
+        to='/projects'
+        className='self-center whitespace-nowrap text-sm dark:text-white'
       >Project
         </Link>
-
-        <Link to='/sign-up' className='py-2'>
-          <Button className='w-max px-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>Sign Up</Button>
-        </Link>
+        </div>
+      <div className='flex gap-2 md:order-2'>
+        <Button className='w-12 h-10 hidden sm:inline border-gray-300' color='gray' pill>
+          <FaMoon/>
+        </Button>
+        {currentUser ? (
+          <Dropdown
+          arrowIcon={false}
+          label={
+            <Avatar 
+              alt='user'
+              img={currentUser.profilePicture}
+              rounded
+            />
+          }
+          >
+            <Dropdown.Header>
+              <span className='block text-sm'>@{currentUser.username}</span>
+              <span className='block text-medium truncate'>{currentUser.email}</span>
+            </Dropdown.Header>
+            <Link to={'/dashboard?tab=profile'}>
+              <Dropdown.Item>Profile</Dropdown.Item>
+            </Link>
+            <Dropdown.Divider/>
+              <Dropdown.Item>Sign Out</Dropdown.Item>
+          </Dropdown>
+        ):(
+          <Link to='/sign-in'>
+          <Button gradientDuoTone="purpleToPink">Sign In</Button>
+          </Link>
+          )
+      }
+        
+        <Navbar.Toggle />
       </div>
-
-      
-      
+      <Navbar.Collapse>
+        <Navbar.Link active={path === '/'} as={'div'}>
+          <Link to="/">
+            Home
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === '/about'} as={'div'}>
+          <Link to="/about">
+            About
+          </Link>
+        </Navbar.Link>
+        <Navbar.Link  active={path === '/projects'} as={'div'}>
+          <Link to="/projects">
+            Projects
+          </Link>
+        </Navbar.Link>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
