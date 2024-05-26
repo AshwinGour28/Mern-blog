@@ -51,7 +51,7 @@ export default function Header() {
         </Link>
         </div>
       <div className='flex gap-2 md:order-2'>
-        <Button className='w-12 h-10 hidden sm:inline border-gray-300 dark:bg-gray-700 ' color='gray' pill onClick={()=>{
+        <Button className='w-12 h-10 mt-2 hidden sm:inline border-gray-300 dark:bg-gray-700 ' color='gray' pill onClick={()=>{
           dispatch(toggleTheme())
         }}>
           {theme ==='light' ?  <FaMoon /> : <FaSun />}
