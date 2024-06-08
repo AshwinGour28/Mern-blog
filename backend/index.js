@@ -5,10 +5,10 @@ import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
 dotenv.config();
 
 const app = express();
+app.use(cookieParser());
 mongoose.connect(process.env.MONGO)
 .then(()=>{
     console.log('Mongodb is connected');
@@ -25,7 +25,6 @@ app.use(cors({
     methods:["GET", "POST"],
 }));
 app.use(express.json())
-app.use(cookieParser());
 app.use('/backend/user', userRoutes);
 app.use('/backend/auth', authRoutes);
 
