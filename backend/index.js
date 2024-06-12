@@ -22,7 +22,8 @@ app.listen(3000, ()=>{
 })
 app.use(cors({
     origin:"http://localhost:5173",
-    methods:["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 }));
 app.use(express.json())
 app.use('/backend/user', userRoutes);
