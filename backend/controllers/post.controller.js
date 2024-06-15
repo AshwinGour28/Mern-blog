@@ -76,7 +76,7 @@ export const deletepost = async(req, res, next) => {
     } catch (error) {
         next(error);
     }
-<<<<<<< HEAD
+
 }
 
 export const updatepost = async(req, res, next) => {
@@ -98,6 +98,4 @@ export const updatepost = async(req, res, next) => {
     } catch (error) {
         next(error);
     }
-=======
->>>>>>> 15663e43ab85c762921ee9b880ec14b4474954ff
 }
